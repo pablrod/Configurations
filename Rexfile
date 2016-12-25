@@ -104,7 +104,7 @@ desc 'Configure Bash Shell';
 task 'ConfigureBash', sub {
     
     file "/home/$user/.bashrc",
-      source => '/tmp/dotfiles/bash/.bashrc',
+      source => '/tmp/dotfiles/bash/bashrc',
       owner  => $user,
       group  => $user,
       mode   => 0644;
