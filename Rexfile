@@ -18,6 +18,11 @@ set
   url        => 'git://github.com/rbenv/rbenv',
   type       => 'git';
 
+set
+  repository => 'ruby-build',
+  url        => 'git://github.com/rbenv/ruby-build',
+  type       => 'git';
+
 desc 'Add RPM Fusion repositories (Free and NonFree)';
 task 'AddRPMFusionRepositories', sub {
 
@@ -187,6 +192,14 @@ task 'InstallOtherPackages', sub {
     checkout 'rbenv', path => "/home/$user/.rbenv";
     run 'cd ~/.rbenv && src/configure && make -C src';
 
+    # ruby-build
+    file "/home/$user/.rbenv/plugins",
+      ensure => 'directory',
+      owner  => $user,
+      group  => $user,
+      mode   => 755;
+
+    checkout 'ruby-build', path => "/home/$user/.rbenv/plugins/ruby-build";
 
 };
 
